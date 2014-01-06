@@ -50,7 +50,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = 'e:/Dropbox/Projects/thinktank/mediafiles/'
+MEDIA_ROOT = '/var/www/Thinktank/mediafiles/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -61,7 +61,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = 'e:/Dropbox/Projects/thinktank/collectedStatic/'
+STATIC_ROOT = '/var/www/Thinktank/collectedStatic/'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -72,8 +72,8 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "e:/Dropbox/Projects/thinktank/static",
-    "e:/Dropbox/Projects/thinktank/mediafiles",
+    "/var/www/Thinktank/static",
+    "/var/www/Thinktank/mediafiles",
 )
 
 # List of finder classes that know how to find static files in
@@ -113,7 +113,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "e:/Dropbox/Projects/thinktank/templates",
+    "/var/www/Thinktank/templates",
 )
 
 INSTALLED_APPS = (
