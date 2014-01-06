@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block content %}
+<table border = 0>
+<td>
+<img width = 100 height = 100 src = "{{ member.imageLink }}">
+</td>
+<td>
+<h2>{{ member.first_name }} {{ member.last_name }}</a></h3>
+{{ member.position }} at {{ member.department }}<br>
+<a href = "mailto://{{ member.email }}">{{ member.email }}</a><br>
+</td>
+</table>
+
+<br>
+<table border="0">
+<tr>
+	<td><div id="tagname">Degrees: </div></td>
+	<td><div id="editfield">{{ member.degrees }}</div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Functions you have experience in: </div></td>
+	<td><div id="editfield">{{ member.experience_functions }}</div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Functions you have interest in: </div></td>
+	<td><div id="editfield">{{ member.interest_functions }}</textarea></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Relevant Experience: </div></td>
+	<td><div id="editfield">{{ member.experience }}</textarea></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Intellectual areas you have experience or knowledge in: </div></td>
+	<td><div id="editfield">{{ member.experience_areas }}</textarea></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Intellectual areas you are interested in: </div></td>
+	<td><div id="editfield">{{ member.interest_areas }}</textarea></div></td>
+</tr>
+
+
+<tr>
+	<td><div id="tagname">Problems or issues you are personally interested in or passionate about: </div></td>
+	<td><div id="editfield">{{ member.interest_problems }}</textarea></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Your interest in the MIT Thinktank: </div></td>
+	<td><div id="editfield">{{ member.interest_thinktank }}</textarea></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Skills you have that might be relevant for the MIT Thinktank: </div></td>
+	<td><div id="editfield">{{ member.experience_thinktank }}</textarea></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Time commitment that you'd be willing to make: </div></td>
+	<td><div id="editfield">{{ member.time_commitment }}</textarea></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Comments: </div></td>
+	<td><div id="editfield">{{ member.comments }}</textarea></div></td>
+</tr>
+
+</table>
+<br>
+
+<h3>Leader of these projects:</h3>
+	{% for curProject in leaderOfProjects.all %}
+	<li><a href="/project/{{ curProject.id }}">{{ curProject.title }}</a></li>
+	{% endfor %}
+<br><br>
+<h3>Member of these projects:</h3>
+	{% for curProject in memberOfProjects.all %}
+	<li><a href="/project/{{ curProject.id }}">{{ curProject.title }}</a></li>
+	{% endfor %}
+<br><br>
+
+{% if userLedProjects.count > 0 %}
+<h3>Administrate My Projects:</h3>
+	{% for curProject in userLedProjects %}
+	<li><a href="/project/{{ curProject.id }}/view">{{curProject.title}}</a> - Add as Candidate:
+	{% if not member in curProject.candidates.all %}
+	<a href="/project/{{ curProject.id }}/updateMembers/{{member.id}}/addCandidate"><img height = 12px src="/static/images/plus.png"></a>
+	{% else %}
+	<a href="/project/{{ curProject.id }}/updateMembers/{{member.id}}/removeCandidate"><img height = 12px src="/static/images/minus.png"></a>
+	{% endif %}
+	 - Add as Member: 
+	{% if not member in curProject.teamMembers.all %}
+	<a href="/project/{{ curProject.id }}/updateMembers/{{member.id}}/addMember"><img height = 12px src="/static/images/plus.png"></a>
+	{% else %}
+	<a href="/project/{{ curProject.id }}/updateMembers/{{member.id}}/removeMember"><img height = 12px src="/static/images/minus.png"></a>
+	{% endif %}
+	</li>
+	{% endfor %}
+<br>
+{% endif %}
+
+{% endblock %}

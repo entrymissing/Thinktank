@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<ul>
+<h3>All Projects:</h3><br>
+{% for curProject in projects.all %}
+	<li><a href="/project/{{ curProject.id }}/view">{{ curProject.title }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

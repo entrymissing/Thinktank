@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>{% block title %}MIT Think Tank{% endblock %}</title>
+	<link rel="stylesheet" href="{{ STATIC_URL }}base.css" />
+	<script src="{{ STATIC_URL }}sorttable.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	{% block htmlhead %}{% endblock %}
+</head>
+<body>
+
+
+
+<div id="wrapper">
+	<div id="header">
+		<h2><a href="/"><img height=75px src="/static/images/intranet.png"></a>  {% block header %}MIT Think Tank{% endblock %}</h2>
+	</div>
+	<div id="user-tools">
+		Hello <a href = "/accounts/{{user.id}}">{{ user.first_name }}</a> /
+		{% if user.is_authenticated %}
+			<a href="/accounts/logout">Log out</a>
+		{% else %}
+			<a href="/accounts/login">Log in</a>
+		{% endif %}
+	</div>
+
+	<div id="sidebar">
+		{% block sidebar %}
+			<a class="btn12" href="/">Home</a><br>
+			<a class="btn12" href="/showProjects">Projects</a><br>
+			<a class="btn12" href="/filterMembers">Members</a><br>
+			<a class="btn12" href="/editProfile">My Profile</a><br>
+			<a class="btn12" href="/changePassword">Change Pwd</a><br>
+		{% endblock %}
+	</div>
+
+	<div id="content">
+		{% block content %}{% endblock %}
+	</div>
+</div>
+
+<div id="footer">
+	<br>
+	<h5>MIT Think Tank v0.2 - Contact: thinktank@mit.edu - {% now "F jS Y H:i" %}</h5>
+</div>
+
+</body>
+</html>

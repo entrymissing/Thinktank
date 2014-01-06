@@ -1,0 +1,78 @@
+/*  
+Sticky Footer Solution
+by Steve Hatcher 
+http://stever.ca
+http://www.cssstickyfooter.com
+*/
+
+* {margin:0;padding:0;} 
+
+/* must declare 0 margins on everything, also for main layout components use padding, not 
+vertical margins (top and bottom) to add spacing, else those margins get added to total height 
+and your footer gets pushed down a bit more, creating vertical scroll bars in the browser */
+
+html, body {height: 100%;}
+
+#header {
+    background: #417690;
+    color: #ffc;
+    overflow: hidden;
+	padding: 5px;
+	position: relative;
+}
+
+#wrapper {
+	min-height: 100%;
+	}
+
+#content {
+	margin-left:40px;
+	overflow:auto;
+	padding-bottom: 40px;
+	}  /* must be same height as the footer */
+
+#footer {
+    background: #417690;
+    color: #ffc;
+	position: relative;
+	margin-top: -40px; /* negative value of footer height */
+	height: 40px;
+	clear:both;
+	bottom: 0;
+	} 
+
+#sidebar{
+    float: right;
+/*    height: 80%; */
+    width: 100px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+#user-tools {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1.2em 100px;
+    font-size: 11px;
+    text-align: right;
+	color: #ffc;
+}
+
+#user-tools a:link, #user-tools a:visited {
+    color: white;
+	text-decoration: none;
+}
+
+#user-tools a:hover {
+    text-decoration: underline;
+}
+
+#content a:link, #content a:visited {
+    color: #030303;
+	text-decoration: none;
+}
+
+#content a:hover {
+    text-decoration: underline;
+}

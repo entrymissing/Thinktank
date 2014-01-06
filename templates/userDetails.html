@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}User {{ profile.user.username }}{% endblock %}
+{% block header %}User Detail: {{ profile.user.username }}{% endblock %}
+
+{% block content %}
+<h2>Personal Data:</h2>
+<p>
+<img src="{{profile.imageLink}}" height = "200px" border = '1'><br>
+Name: {{profile.user.first_name}} {{profile.user.last_name}} 
+<br>
+Affiliation: {{profile.affiliation}}
+<br>
+EMail: {{profile.user.email}}<a href="mailto:{{profile.user.email}}"> <img src="/static/images/email.gif" title="Contact User"></a>
+<br>
+{% if profile.website %}
+Website: <a href="profile.website">{{profile.website}}</a>
+{% endif %}
+</p>
+
+<h2>Projects Involved in:</h2>
+<p>
+{% for project in profile.user.project_set.all %}
+<ul>
+<li><a href="/project/{{ project.id }}/">{{project.title}}</a></li>
+</ul>
+{% endfor %}
+</p>
+
+<h2>Task Contributions:</h2>
+<p>
+{% for task in profile.user.task_set.all %}
+<ul>
+<li><a href="/project/{{ task.project.id }}/">{{task.project.title}}</a> <img src="/static/images/rightarrow.png"> <a href="/task/{{ task.id }}/">{{task.title}}</a></li>
+</ul>
+{% endfor %}
+
+<h2>Proposed Solutions:</h2>
+<p>
+{% for solution in profile.user.solution_set.all %}
+<ul>
+<li><a href="/project/{{ solution.task.project.id }}/">{{solution.task.project.title}}</a> <img src="/static/images/rightarrow.png"> <a href="/task/{{ solution.task.id }}/">{{solution.task.title}}</a> <img src="/static/images/rightarrow.png"> <a href="/solution/{{ solution.id }}/">{{solution.title}}</a></li>
+</ul>
+{% endfor %}
+</p>
+{% endblock %}
+

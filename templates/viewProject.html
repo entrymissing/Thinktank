@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>{{ project.title }}</h3>
+<br>
+<h3>Description:</h3>
+<a href='{{ STATIC_URL }}{{ project.fname }}'>Download Description File</a><br>
+{{ project.description }}
+<br><br>
+<h3>Project Leaders: </h3>
+<font size="2">contact them if you are interested in the project</font>
+	{% for curLeader in project.projectLeads.all %}
+	<li><a href="/member/{{ curLeader.id }}/view">{{ curLeader.first_name }} {{ curLeader.last_name }}</a>
+	<a href="mailto://{{ curLeader.email }}"><img src="/static/images/email.gif"></a></li>
+	{% endfor %}
+<br>
+<h3>Project Members:</h3>
+	{% for curMember in project.teamMembers.all %}
+	<li><a href="/member/{{ curMember.id }}/view">{{ curMember.first_name }} {{ curMember.last_name }}</a>	
+	{% if isAdmin %}<a href="/project/{{ project.id }}/updateMembers/{{curMember.id}}/removeMember"><img height = 12px src="/static/images/minus.png"></a>{% endif %}
+	</li>
+	{% endfor %}
+<br>
+<h3>Project Sponsor:</h3>
+{{ project.contactName }}</a>
+<br>
+<br>
+
+{% if isAdmin %}
+{% if project.candidates.count > 0 %}
+<h3>Project Candidates:</h3>
+	{% for curCandidate in project.candidates.all %}
+	<li><a href="/member/{{ curCandidate.id }}/view">{{ curCandidate.first_name }} {{ curCandidate.last_name }}
+	<a href="/project/{{ project.id }}/updateMembers/{{curCandidate.id}}/removeCandidate"><img height = 12px src="/static/images/minus.png"></a>
+	<a href="/project/{{ project.id }}/updateMembers/{{curCandidate.id}}/promoteToMember"><img height = 12px src="/static/images/uparrow.png"></a>
+	</li>
+	{% endfor %}
+<br>
+{% endif %}
+<h3><a href = "/project/{{project.id}}/edit">Edit this project</a></h3>
+{% endif %}
+{% endblock %}

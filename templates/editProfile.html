@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="/updateProfile/" method="post"> 
+<input type="hidden" name="username" value="{{ profile.username}}">
+<table border="0">
+<tr>  
+	<td><div id="tagname">First Name: </div> <div id="editfield"></td>
+	<td><input type="text" name="first_name" size="35" value="{{ profile.first_name}}"></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Last Name: </div></td>
+	<td><div id="editfield"><input type="text" name="last_name" size="35" value="{{ profile.last_name }}"></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Image URL: </div></td>
+	<td><div id="editfield"><input type="text" name="imageurl" size="35" value="{{ profile.imageLink }}"></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Position: </div></td>
+	<td><div id="editfield"><input type="text" name="position" size="35" value="{{ profile.position }}"></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Department: </div></td>
+	<td><div id="editfield"><input type="text" name="department" size="35" value="{{ profile.department }}"></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Degrees: </div></td>
+	<td><div id="editfield"><input type="text" name="degrees" size="35" value="{{ profile.degrees }}"></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">EMail: </div></td>
+	<td><div id="editfield"><input type="text" name="email" size="35" value="{{ profile.email }}"></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Functions you have experience in: </div></td>
+	<td><div id="editfield"><textarea name="experience_functions">{{ profile.experience_functions }}</textarea></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Functions you have interest in: </div></td>
+	<td><div id="editfield"><textarea name="interest_functions">{{ profile.interest_functions }}</textarea></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Relevant Experience: </div></td>
+	<td><div id="editfield"><textarea name="experience">{{ profile.experience }}</textarea></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Intellectual areas you have experience or knowledge in: </div></td>
+	<td><div id="editfield"><textarea name="experience_areas">{{ profile.experience_areas }}</textarea></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Intellectual areas you are interested in: </div></td>
+	<td><div id="editfield"><textarea name="interest_areas">{{ profile.interest_areas }}</textarea></div></td>
+</tr>
+
+
+<tr>
+	<td><div id="tagname">Problems or issues you are personally interested in or passionate about: </div></td>
+	<td><div id="editfield"><textarea name="interest_problems">{{ profile.interest_problems }}</textarea></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Your interest in the MIT Thinktank: </div></td>
+	<td><div id="editfield"><textarea name="interest_thinktank">{{ profile.interest_thinktank }}</textarea></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Skills you have that might be relevant for the MIT Thinktank: </div></td>
+	<td><div id="editfield"><textarea name="experience_thinktank">{{ profile.experience_thinktank }}</textarea></div></td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Time commitment that you'd be willing to make: </div></td>
+	<td>
+	<select name="time_commitment">
+	<option value="<2 hours/week" {% if profile.time_commitment ==  "<2 hours/week"%}selected {% endif %}><2 hours/week</option>
+	<option value="2-5 hours/week" {% if profile.time_commitment ==  "2-5 hours/week"%}selected {% endif %}>2-5 hours/week</option>
+	<option value="5-8 hours/week" {% if profile.time_commitment ==  "5-8 hours/week"%}selected {% endif %}>5-8 hours/week</option>
+	<option value="8+ hours/week" {% if profile.time_commitment ==  "8+ hours/week"%}selected {% endif %}>8+ hours/week</option>
+	</select><br> 
+	</td>
+</tr>
+
+<tr>
+	<td><div id="tagname">Comments: </div></td>
+	<td><div id="editfield"><textarea name="comments">{{ profile.comments }}</textarea></div></td>
+</tr>
+
+</table>
+{% csrf_token %}
+<input type="submit" value="Update My Profile">
+</form>
+{% endblock %}

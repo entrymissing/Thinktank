@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<table border="0">
+<tr>
+	<h3>Thinktank Members:</h3><br>
+	<td width=400px valign="top">
+		{% for curMember in members.all %}
+		<li><a href="/member/{{ curMember.id }}/view">{{ curMember.first_name }} {{ curMember.last_name }}</a></li>
+		{% endfor %}
+	</ul>
+ </td>
+ <td valign="top">
+ 	<h3>Filter Options:</h3><br>
+	<form action="/filterMembers" method="get">
+	  Name: <input type="text" name="name"><br>
+	  Position: <input type="text" name="position"><br>
+	  Interests: <input type="text" name="intests"><br>
+	  Experience: <input type="text" name="experience"><br>
+	  Time Commitment:
+	<select name="time_commitment">
+	<option value=""  selected>---</option>
+	<option value="<2 hours/week"><2 hours/week</option>
+	<option value="2-5 hours/week">2-5 hours/week</option>
+	<option value="5-8 hours/week">5-8 hours/week</option>
+	<option value="8+ hours/week">8+ hours/week</option>
+	</select><br>
+	  EMail: <input type="text" name="email"><br>
+	  <input type="submit" value="Submit">
+	</form>
+  </td>
+</tr>
+</table>
+<ul>
+
+{% endblock %}
