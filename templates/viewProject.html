@@ -3,10 +3,18 @@
 
 <h2>{{ project.title }}</h3>
 <br>
+
+<a href='{{ MEDIA_URL }}{{ project.fname }}'>Download Description File</a><br>
+<a href="mailto://thinktank@mit.edu">Contact Project Leader</a>
+
+<br><br>
+<h3>Status: {{project.status}}</h3>
+<h3>Recruiting: {{project.recruiting}}</h3>
+<br>
 <h3>Description:</h3>
-<a href='{{ STATIC_URL }}{{ project.fname }}'>Download Description File</a><br>
 {{ project.description }}
 <br><br>
+<!--
 <h3>Project Leaders: </h3>
 <font size="2">contact them if you are interested in the project</font>
 	{% for curLeader in project.projectLeads.all %}
@@ -39,4 +47,5 @@
 {% endif %}
 <h3><a href = "/project/{{project.id}}/edit">Edit this project</a></h3>
 {% endif %}
+-->
 {% endblock %}

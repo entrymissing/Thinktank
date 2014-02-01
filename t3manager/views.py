@@ -135,7 +135,6 @@ def updateProfile(request):
 def frontpage(request):
 	allProjects = Project.objects.all()
 	myProjects = Project.objects.filter(Q(teamMembers = request.user.profile) | Q(projectLeads = request.user.profile)).distinct()
-	print len(myProjects)
 	allMembers = Profile.objects.all().order_by('-first_name')
 	context = {'projects': allProjects,'myProjects':myProjects, 'members': allMembers}
 	return render(request, 'frontpage.html', context)
@@ -156,7 +155,10 @@ def userDetails(request, user_id):
 
 @login_required
 def importCSV(request):
-	with open('MIT Think Tank Application2.csv', 'r') as csvfile:
+	#from os import getcwd, listdir
+	#return HttpResponse(listdir(getcwd()))
+	#open('test.test','w+')
+	with open('/var/www/Thinktank/AcceptedApplications.csv', 'r') as csvfile:
 		spamreader = csv.reader(csvfile, delimiter=',', quotechar='"')
 		allRows = [curRow for curRow in spamreader]
 	
@@ -166,7 +168,7 @@ def importCSV(request):
 
 			if not User.objects.filter(username=newUsername).count():
 				print 'Creating User ' + newUsername
-				newUser = User.objects.create_user(newUsername, newUsermail,'testpassword')
+				newUser = User.objects.create_user(newUsername, newUsermail,row[17])
 				newUser.first_name = row[1]
 				newUser.last_name = row[2]
 				newUser.save()

@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     url(r'^member/(?P<member_id>\d+)/view$', views.viewMember, name='viewMember'),
     url(r'^project/(?P<project_id>\d+)/view$', views.viewProject, name='viewProject'),
     url(r'^project/(?P<project_id>\d+)/updateMembers/(?P<profile_id>\d+)/(?P<command>\S+)$', views.updateMembers, name='updateMembers'),
-    url(r'^project/(?P<pk>\d+)/edit$', views.editProject.as_view(), name='editProject'),
+    #url(r'^project/(?P<pk>\d+)/edit$', views.editProject.as_view(), name='editProject'),
     url(r'^filterMembers/$', views.filterMembers, name='filterMembers'),
     url(r'^showProjects/$', views.showProjectOverview, name='showProjectOverview'),
     url(r'^editProfile/$', views.editProfile, name='editProfile'),
@@ -24,11 +24,11 @@ urlpatterns = patterns('',
     url(r'^$', views.frontpage, name='frontpage'),
 
     #may not longer be supoorted
-    url(r'^member/(?P<pk>\d+)/edit$', views.editMember.as_view(), name='editMember'),
+    #url(r'^member/(?P<pk>\d+)/edit$', views.editMember.as_view(), name='editMember'),
 
 
     # Uncomment the admin/doc line below to enable admin documentation:
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    #url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),

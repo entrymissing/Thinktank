@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<!--
 <h2>My Projects</h2>
 <ul>
 {% for curProject in myProjects.all %}
@@ -7,7 +8,7 @@
 {% endfor %}
 </ul>
 <br><br>
-
+-->
 <h2>All Projects</h2>
 <ul>
 {% for curProject in projects.all %}
@@ -15,11 +16,12 @@
 {% endfor %}
 </ul>
 <br><br>
-
+<!--
 <h2>Thinktank Members</h2>
 <ul>
 {% for curMember in members.all %}
 	<li><a href="/member/{{ curMember.id }}/view">{{ curMember.first_name }} {{ curMember.last_name }}</a></li>
 {% endfor %}
 </ul>
+-->
 {% endblock %}

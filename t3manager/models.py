@@ -54,7 +54,7 @@ class Project(models.Model):
 	projectLeads = models.ManyToManyField(Profile, related_name='project_leader')
 	teamMembers = models.ManyToManyField(Profile, related_name='project_teamMembers', blank=True)
 	candidates = models.ManyToManyField(Profile, related_name='project_candidates', blank=True)
-	description_file = models.FileField(upload_to='e:/Dropbox/Projects/thinktank/mediafiles/', blank=True)
+	description_file = models.FileField(upload_to='/var/www/Thinktank/mediafiles/', blank=True)
 	
 	def getDescriptionFileName(self):
 		print 'asdf'
