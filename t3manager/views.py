@@ -154,7 +154,62 @@ def userDetails(request, user_id):
 
 
 @login_required
-def importCSV(request):
+def uploadCSV(request):
+	if request.user.is_superuser:
+		return render(request, 'uploadNewMembers.html', None)
+	else:
+		return redirect('/')
+	
+@login_required
+def importNewMembers(request):
+	if request.user.is_superuser:
+		if request.method == 'POST':
+			spamreader = csv.reader(request.FILES['csvFile'].readlines(), delimiter=',', quotechar='"')
+			allRows = [curRow for curRow in spamreader]
+			
+			res = ['Added the following users and profiles:<br>']
+			
+			for row in allRows[1:]:
+				newUsername = (row[1][0] + row[2]).lower().strip().replace(' ', '')
+				newUsermail =  row[6]
+				
+				if not User.objects.filter(username=newUsername).count():
+					res.append(newUsername + ' - ' + newUsermail + '<br>')
+					newUser = User.objects.create_user(newUsername, newUsermail,row[17])
+					newUser.first_name = row[1]
+					newUser.last_name = row[2]
+					newUser.save()
+					
+					newProfile = Profile(post_date = datetime.strptime(row[0], '%m/%d/%Y %H:%M:%S'),
+									username = newUsername,
+									imageLink = "http://icons.iconarchive.com/icons/deleket/face-avatars/256/Male-Face-" + choice(['A','B']) + str(choice(range(1,6))) + "-icon.png",
+									first_name = row[1], 
+									last_name = row[2],
+									position = row[3],
+									department = row[4],
+									degrees = row[5],
+									email = newUsermail,
+									experience_functions = row[7],
+									interest_functions = row[8],
+									experience = row[9],
+									experience_areas = row[10],
+									interest_areas = row[11],
+									interest_problems = row[12],
+									interest_thinktank = row[13],
+									experience_thinktank = row[14],
+									time_commitment = row[15],
+									comments = row[16])
+					newProfile.save()
+				
+			return HttpResponse(res)
+		else:
+			return redirect('/')
+	else:
+		return redirect('/')
+
+
+@login_required
+def importCSVBak(request):
 	#from os import getcwd, listdir
 	#return HttpResponse(listdir(getcwd()))
 	#open('test.test','w+')

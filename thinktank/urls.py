@@ -9,7 +9,8 @@ from django.contrib.auth.views import password_change
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^importCSV$', views.importCSV, name='importCSV'),
+    url(r'^uploadCSV$', views.uploadCSV, name='uploadCSV'),
+    url(r'^importNewMembers$', views.importNewMembers, name='importNewMembers'),
     url(r'^member/(?P<member_id>\d+)/view$', views.viewMember, name='viewMember'),
     url(r'^project/(?P<project_id>\d+)/view$', views.viewProject, name='viewProject'),
     url(r'^project/(?P<project_id>\d+)/updateMembers/(?P<profile_id>\d+)/(?P<command>\S+)$', views.updateMembers, name='updateMembers'),
